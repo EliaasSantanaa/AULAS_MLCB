@@ -21,9 +21,24 @@ mensagens = [
     "Quais promoções vocês têm hoje?",
     "Qual o horário de funcionamento?",
     "Meu produto veio com defeito",
-    "Posso pagar com cartão de crédito?"
+    "Posso pagar com cartão de crédito?",
+    "Vocês entregam aos sábados?",
+    "Como faço para cancelar meu pedido?",
+    "Tem desconto para pagamento à vista?",
+    "Onde posso acompanhar meu pedido?"
 ]
-rotulos = ["pedido", "suporte", "promoção", "informação", "suporte", "pagamento"]
+rotulos = [
+    "pedido",
+    "suporte",
+    "promoção",
+    "informação",
+    "suporte",
+    "pagamento",
+    "informação",
+    "pedido",
+    "promoção",
+    "informação"
+]
 
 # 2. Pré-processamento das mensagens
 mensagens_limpas = [limpar_texto(m) for m in mensagens]
