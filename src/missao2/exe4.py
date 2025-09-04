@@ -9,6 +9,7 @@ import numpy as np
 from sklearn.cluster import KMeans
 
 print("--- Exercício 4 -  Missão 2 (Aprendizado Não Supervisionado) ---")
+print("--- Exercício 4 -  Missão 2 (Aprendizado Não Supervisionado) ---")
 
 # Dados: [valor_transacao, hora_do_dia (0-23)]
 transacoes = np.array([
