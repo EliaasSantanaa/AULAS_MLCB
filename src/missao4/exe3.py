@@ -1,26 +1,21 @@
-# K-Nearest Neighbors (KNN)
-# Exercício: Aprovado ou Reprovado?
-# Sua Tarefa: Crie um modelo KNN que classifica se um aluno foi aprovado (1) ou reprovado (0) com base em duas notas.
+# Exercício para Alunos: Prever Temperatura
+# Sua Tarefa: Você tem dados da temperatura em uma cidade com base na altitude (em metros). Crie um modelo para prever a temperatura a 2500 metros.
+print("\n--- 1.3: Exercício - Prever Temperatura ---")
 
+# Importações necessárias
 import numpy as np
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LinearRegression
 
-# EXERCÍCIO - APROVADO OU REPROVADO?
-print("\n--- 2.2: Exercício - Aprovado/Reprovado ---")
-# X: [nota_prova_1, nota_prova_2]
-notas_alunos = np.array([[8, 7], [5, 4], [9, 8], [4, 2], [7, 9], [3, 5]])
-# y: 0=Reprovado, 1=Aprovado
-situacao = np.array([1, 0, 1, 0, 1, 0])
+# X: Altitude em metros
+altitudes = np.array([500, 1000, 1500, 2000, 3000]).reshape(-1, 1)
+# y: Temperatura em Celsius
+temperaturas = np.array([25, 20, 15, 10, 5])
 
-# Crie uma instância do modelo KNeighborsClassifier com 3 vizinhos.
-modelo_alunos = KNeighborsClassifier(n_neighbors=3)
+# Crie e treine um modelo de Regressão Linear com estes dados.
+modelo_temp = LinearRegression()
+modelo_temp.fit(altitudes, temperaturas)
 
-# Treine o modelo com os dados dos alunos.
-modelo_alunos.fit(notas_alunos, situacao)
-
-# Preveja a situação de um aluno com notas 6 e 7.
-aluno_novo = np.array([[6, 7]])
-previsao_aluno = modelo_alunos.predict(aluno_novo)
-
-resultado_aluno = "Aprovado" if previsao_aluno[0] == 1 else "Reprovado"
-print(f"Um aluno com notas [6, 7] foi classificado como: {resultado_aluno}")
+# Faça a previsão da temperatura para uma altitude de 2500 metros.
+altitude_nova = np.array([[2500]])
+temp_prevista = modelo_temp.predict(altitude_nova)
+print(f"Temperatura prevista para 2500 metros: {temp_prevista[0]:.2f} °C")

@@ -1,34 +1,30 @@
-# Árvores de Decisão
-# Exercício: Aprovar Empréstimo
-# Sua Tarefa: Crie uma árvore de decisão para aprovar (1) ou negar (0) um empréstimo com base na renda anual (em milhares) e se a pessoa possui casa própria (1=Sim, 0=Não).
-
+from sklearn.neighbors import KNeighborsClassifier
 import numpy as np
-from sklearn.tree import DecisionTreeClassifier, plot_tree
-import matplotlib.pyplot as plt
-# EXERCÍCIO - APROVAR EMPRÉSTIMO
-print("\n--- 3.2: Exercício - Aprovar Empréstimo ---")
-# X: [renda_anual_milhar, casa_propria]
-dados_credito = np.array([[50, 1], [30, 0], [80, 1], [40, 0], [120, 1], [70, 0]])
-# y: 0=Negado, 1=Aprovado
-decisao_credito = np.array([1, 0, 1, 0, 1, 1])
 
+print("\n- KNN (Classificar Frutas) ---")
 
-# Crie e treine um modelo DecisionTreeClassifier.
-modelo_credito = DecisionTreeClassifier()
-modelo_credito.fit(dados_credito, decisao_credito)
+# X: [peso em gramas, textura (0=lisa, 1=cascuda)]
+X_frutas = np.array([
+    [150, 0], [170, 0], [180, 0], # Maçãs
+    [130, 1], [120, 1], [140, 1]  # Laranjas
+])
+# y: 0=Laranja, 1=Maçã
+y_frutas = np.array([1, 1, 1, 0, 0, 0])
 
+# 1. Criar o modelo KNN
+# n_neighbors=3 significa que ele vai consultar os 3 vizinhos mais próximos.
+modelo_frutas = KNeighborsClassifier(n_neighbors=3)
 
-# Preveja a decisão para alguém com renda de 90 mil e casa própria.
-novo_cliente = np.array([[90, 1]])
-previsao_credito = modelo_credito.predict(novo_cliente)
+# 2. Treinar o modelo
+modelo_frutas.fit(X_frutas, y_frutas)
 
+# 3. Fazer uma previsão para uma nova fruta: 160g e textura lisa (0)
+fruta_nova = np.array([[160, 0]])
+previsao = modelo_frutas.predict(fruta_nova)
 
-resultado_credito = "Aprovado" if previsao_credito[0] == 1 else "Negado"
-print(f"Decisão para o cliente [R$90k, Casa Própria]: {resultado_credito}")
-
-
-# (Opcional): Plote a árvore de decisão para este modelo.
-plt.figure(figsize=(8,5))
-plot_tree(modelo_credito, feature_names=["Renda (mil)", "Casa Própria"], class_names=["Negado", "Aprovado"], filled=True)
-plt.title("Árvore de Decisão - Aprovação de Empréstimo")
-plt.show()
+# Traduzindo a previsão numérica para texto
+resultado = "Maçã" if previsao[0] == 1 else "Laranja"
+print(f"Dados das Frutas:\n{X_frutas}")
+print(f"Rótulos: {y_frutas}")
+print("-" * 20)
+print(f"Uma fruta de [160g, lisa] foi classificada como: {resultado}")
