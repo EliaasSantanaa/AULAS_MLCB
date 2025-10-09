@@ -135,4 +135,4 @@ print(novo_cliente)
 print(f"\nPrevisão de risco: {'Alto Risco' if predicao == 1 else 'Baixo Risco'}")
 print(f"Probabilidade de inadimplência: {proba:.2%}")
 
-print("\n✅ Projeto finalizado com sucesso!")
+print("\n Projeto finalizado com sucesso!")
