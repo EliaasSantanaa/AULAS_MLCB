@@ -1,0 +1,13 @@
+### Exercício Introdutório: Identificação da lógica
+
+Tema: Identificando os Componentes de Aprendizado por Reforço em um novo Cenário
+Objetivo: Consolidar a compreensão dos conceitos fundamentais do Aprendizado por Reforço (Agente, Ambiente, Estado, Ação, Recompensa, Política e Função de Valor) em um contexto diferente do labirinto.
+Cenário:Imagine que você está construindo um sistema de IA para ensinar um robô-aspirador a limpar eficientemente uma casa. O robô se move em diferentes cômodos, encontra sujeira e, eventualmente, precisa retornar à sua base para recarregar.
+Tarefa:Para este cenário do robô-aspirador, identifique e RESPONDA descrevendo cada um dos seguintes componentes de Aprendizado por Reforço:
+- Agente: Robô-aspirador
+- Ambiente: A casa com cômodos diferentes, móveis e sujeira.
+- Estado (exemplifique alguns estados possíveis): Cômodo limpo, cômodo sujo, robô na base de carregamento, robô em movimento.
+- Ação (exemplifique algumas ações possíveis): Mover para frente, girar à esquerda, girar à direita, iniciar limpeza, retornar à base
+- Recompensa (sugira algumas recompensas positivas e negativas): Positivas: Limpar sujeira, retornar à base com sucesso; Negativas: Bater em móveis, não limpar sujeira, não conseguir acessar alguns locais da casa.
+- Política (descreva brevemente o que uma política representaria aqui): A política seria a estratégia do robô-aspirador para decidir qual ação tomar em cada estado, visando aumentar a recompensa acumulada.
+- Função de Valor Q(quociente) (o que ela tentaria estimar neste contexto?):Beneficio de ligar o robô-aspirador atráves da IA para limpar a casa, diminuindo o tempo e o consumo de energia, enquanto aumenta a área limpa e a satisfação do usuário.
