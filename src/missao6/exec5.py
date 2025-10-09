@@ -87,9 +87,9 @@ print("- Quanto mais próximo de 1, melhor o ajuste.\n")
 print("Executando GridSearchCV para ajustar hiperparâmetros (pode demorar alguns minutos)...")
 
 param_grid = {
-    'svr__C': [10, 50, 100],
-    'svr__gamma': ['scale', 0.1, 0.01],
-    'svr__kernel': ['rbf', 'poly']
+    'svr__C': [10, 100],
+    'svr__gamma': ['scale'],
+    'svr__kernel': ['rbf']
 }
 
 grid = GridSearchCV(pipeline, param_grid, cv=3, scoring='r2', n_jobs=-1)
@@ -110,4 +110,4 @@ print("=== Avaliação do Melhor Modelo ===")
 print(f"MAE: {mae_best:.3f}")
 print(f"R²: {r2_best:.3f}")
 
-print("\n✅ Projeto finalizado com sucesso!")
+print("\n Projeto finalizado com sucesso!")

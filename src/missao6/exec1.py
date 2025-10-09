@@ -43,6 +43,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report, roc_auc_score
 
 # Criação do Dataset Simulado
+
 np.random.seed(42)  # Reprodutibilidade
 
 n = 300  # número de clientes
