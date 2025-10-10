@@ -41,6 +41,9 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report, roc_auc_score
+import warnings
+from sklearn.exceptions import UndefinedMetricWarning
+warnings.filterwarnings("ignore", category=UndefinedMetricWarning)
 
 # Criação do Dataset Simulado
 
@@ -96,7 +99,7 @@ preprocessador = ColumnTransformer([
 # Pipeline Final com Modelo 
 modelo = Pipeline([
     ('preprocessador', preprocessador),
-    ('classificador', LogisticRegression(max_iter=1000))
+    ('classificador', LogisticRegression(max_iter=1000, class_weight='balanced'))
 ])
 
 # Treinamento
@@ -117,7 +120,7 @@ print(f"Acurácia: {acuracia:.3f}")
 print(f"ROC AUC Score: {roc_auc:.3f}\n")
 
 print("=== Relatório de Classificação ===")
-print(classification_report(y_test, y_pred, target_names=['Baixo Risco', 'Alto Risco']))
+print(classification_report(y_test, y_pred, target_names=['Baixo Risco', 'Alto Risco'], zero_division=0))
 
 # Exemplo de Previsão 
 novo_cliente = pd.DataFrame({

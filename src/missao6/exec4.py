@@ -21,3 +21,35 @@
 # Modelagem: O algoritmo KNN é muito sensível à escala das features. Portanto, crie um Pipeline que primeiro aplica o StandardScaler e depois o KNeighborsClassifier. Você pode experimentar com o parâmetro n_neighbors (um bom começo é 5).
 # Treinamento: Treine o pipeline com .fit().
 # Avaliação: Faça previsões e use o classification_report para ver a performance do modelo para cada uma das três espécies de flores. A acurácia geral é uma boa métrica aqui, pois o dataset é balanceado.
+
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, classification_report
+
+# carregar os dados
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# dividir os dados em treino e teste
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+
+# criar pipeline com padronizador e knn (vizinhos = 5)
+pipeline = Pipeline([
+    ('scaler', StandardScaler()),
+    ('knn', KNeighborsClassifier(n_neighbors=5))
+])
+
+# treinar o pipeline nos dados de treino
+pipeline.fit(X_train, y_train)
+
+# fazer previsões no conjunto de teste
+predictions = pipeline.predict(X_test)
+
+# calcular e imprimir acurácia e relatório de classificação
+accuracy = accuracy_score(y_test, predictions)
+print(f'acurácia geral: {accuracy * 100:.2f}%')
+print('relatório de classificação:')
+print(classification_report(y_test, predictions, target_names=iris.target_names))

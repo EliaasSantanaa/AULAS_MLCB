@@ -43,12 +43,12 @@ print(df_churn.isnull().sum())
 
 # 3.1. Separe as features (X) do alvo (y)
 # Dica: 'y' é a coluna 'Churn'. 'X' são todas as outras.
-X = # SEU CÓDIGO AQUI
-y = # SEU CÓDIGO AQUI
+X = df_churn.drop('Churn', axis=1)
+y = df_churn['Churn']
 
 # 3.2. Divida os dados em conjuntos de treino e teste
 # Dica: Use 25% para teste e random_state=42.
-X_treino, X_teste, y_treino, y_teste = # SEU CÓDIGO AQUI
+X_treino, X_teste, y_treino, y_teste = train_test_split(X, y, test_size=0.25, random_state=42)
 
 # 3.3. Crie um pipeline de pré-processamento (similar ao de regressão)
 colunas_numericas = ['Idade', 'Plano_Mensal', 'Meses_Contrato']
@@ -71,25 +71,25 @@ preprocessor = ColumnTransformer(
 # --- 4. TREINAMENTO DO MODELO ---
 
 # 4.1. Crie o modelo de Regressão Logística (para classificação)
-modelo_cla = # SEU CÓDIGO AQUI
+modelo_cla = LogisticRegression()
 
 # 4.2. Crie o pipeline final que une o pré-processador e o modelo
 pipeline_final_cla = Pipeline(steps=[('preprocessor', preprocessor),
                                      ('classifier', modelo_cla)])
 
 # 4.3. Treine o pipeline completo com os dados de treino
-# SEU CÓDIGO AQUI
+pipeline_final_cla.fit(X_treino, y_treino)
 
 print("\n Modelo de Classificação treinado com sucesso!")
 
 # --- 5. AVALIAÇÃO DO MODELO ---
 
 # 5.1. Faça previsões com os dados de teste
-previsoes_churn = # SEU CÓDIGO AQUI
+previsoes_churn = pipeline_final_cla.predict(X_teste)
 
 # 5.2. Calcule as métricas de avaliação
 # Dica: Para classificação, acurácia, matriz de confusão e relatório de classificação são ótimos.
-acuracia = # SEU CÓDIGO AQUI (use accuracy_score)
+acuracia = accuracy_score(y_teste, previsoes_churn)
 relatorio = classification_report(y_teste, previsoes_churn)
 matriz_conf = confusion_matrix(y_teste, previsoes_churn)
 
